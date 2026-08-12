@@ -1,4 +1,6 @@
 FROM n8nio/n8n:latest
 USER root
-RUN apk add --no-cache python3 py3-pip build-base python3-dev ffmpeg curl \
-    && pip install --break-system-packages faster-whisper
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-pip python3-venv build-essential ffmpeg curl \
+    && pip install --break-system-packages faster-whisper \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
